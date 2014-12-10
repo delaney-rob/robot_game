@@ -1,0 +1,12 @@
+# depslib dependency file v1.0
+1417089411 source:/home/rob/Yr4SoftDev/Graphics/digger_game/main.cpp
+	<SFML/Graphics.hpp>
+
+1417191963 source:/home/rob/Yr4SoftDev/Graphics/digger_game/diggerMain.cpp
+	<SFML/Graphics.hpp>
+
+1418174594 source:/home/rob/Yr4SoftDev/Graphics/digger_game/robotMain.cpp
+	<SFML/Graphics.hpp>
+	<iostream>
+	<sstream>
+
