@@ -1,6 +1,7 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 #include <sstream>
+#include <stdlib.h>
 using namespace std;
 
 int main()
@@ -13,7 +14,7 @@ int main()
 
     //Body
     sf::Texture tBody;
-    tBody.loadFromFile("robot_body.png");
+    tBody.loadFromFile("images/robot_body.png");
     tBody.setSmooth(true);
     sf::Sprite sBody;
     sBody.setTexture(tBody);
@@ -21,17 +22,18 @@ int main()
 
     //First Part of arm
     sf::Texture tArm1;
-    tArm1.loadFromFile("robot_arm_1.png");
+    tArm1.loadFromFile("images/robot_arm_1.png");
     tArm1.setSmooth(true);
     sf::Sprite sArm1;
     sArm1.setTexture(tArm1);
     sArm1.setOrigin(30,31);
+    //sf::Vector2f sArm1Pos(70,15);
     sf::Vector2f sArm1Pos(133,150);
     float sArm1Rot = 0.0;
 
     //Second Part of arm
     sf::Texture tArm2;
-    tArm2.loadFromFile("robot_arm_2.png");
+    tArm2.loadFromFile("images/robot_arm_2.png");
     tArm2.setSmooth(true);
     sf::Sprite sArm2;
     sArm2.setTexture(tArm2);
@@ -41,7 +43,7 @@ int main()
 
     //First Pincer
     sf::Texture tPincer1;
-    tPincer1.loadFromFile("robot_pincer.png");
+    tPincer1.loadFromFile("images/robot_pincer.png");
     tPincer1.setSmooth(true);
     sf::Sprite sPincer1;
     sPincer1.setTexture(tPincer1);
@@ -57,39 +59,47 @@ int main()
     //Point used for collision detection
     sf::Vector2f pincerPoint1 = sf::Vector2f(43,2);
 
+    /* initialize random seed: */
+    srand(time(NULL));
+
     //Balloons
     sf::Texture tBalloon1;
-    tBalloon1.loadFromFile("robot_rBalloon.png");
+    tBalloon1.loadFromFile("images/robot_rBalloon.png");
     tBalloon1.setSmooth(true);
     sf::Sprite sBalloon1;
     sBalloon1.setTexture(tBalloon1);
-    sBalloon1.setPosition(150,150);
+    //sBalloon1.setPosition(150,150);
+    sBalloon1.setPosition(rand()% 600 + 350, rand() % 500 + 0 );
     bool ballOneHit = false;
 
     sf::Texture tBalloon2;
-    tBalloon2.loadFromFile("robot_yBalloon.png");
+    tBalloon2.loadFromFile("images/robot_yBalloon.png");
     tBalloon2.setSmooth(true);
     sf::Sprite sBalloon2;
     sBalloon2.setTexture(tBalloon2);
-    sBalloon2.setPosition(300,200);
+    //sBalloon2.setPosition(300,200);
+    sBalloon2.setPosition(rand()% 600 + 350, rand() % 500 + 0 );
     bool ballTwoHit = false;
 
     sf::Texture tBalloon3;
-    tBalloon3.loadFromFile("robot_bBalloon.png");
+    tBalloon3.loadFromFile("images/robot_bBalloon.png");
     tBalloon3.setSmooth(true);
     sf::Sprite sBalloon3;
     sBalloon3.setTexture(tBalloon3);
-    sBalloon3.setPosition(800,450);
+    //sBalloon3.setPosition(800,450);
+    sBalloon3.setPosition(rand()% 600 + 350, rand() % 500 + 0 );
     bool ballThreeHit = false;
 
     sf::Sprite sBalloon4;
     sBalloon4.setTexture(tBalloon1);
-    sBalloon4.setPosition(600,20);
+    //sBalloon4.setPosition(600,20);
+    sBalloon4.setPosition(rand()% 600 + 350, rand() % 500 + 0 );
     bool ballFourHit = false;
 
     sf::Sprite sBalloon5;
     sBalloon5.setTexture(tBalloon2);
-    sBalloon5.setPosition(850,0);
+    //sBalloon5.setPosition(850,0);
+    sBalloon5.setPosition(rand()% 600 + 350, rand() % 500 + 0 );
     bool ballFiveHit = false;
 
     sf::Font font;
@@ -128,7 +138,7 @@ int main()
 
         //If any balloons left keep timer running, else stop timer
         if (ballOneHit==false || ballTwoHit==false || ballThreeHit==false || ballFourHit==false || ballFiveHit==false){
-        text.setString(seconds.str());
+        text.setString(seconds.str() + " seconds.");
         }
         else{
         text.setString(finish);
@@ -150,7 +160,7 @@ int main()
         }
 
         if(sf::Keyboard::isKeyPressed(sf::Keyboard::Down)){
-            if (sArm1Rot <=50){
+            if (sArm1Rot <=50 ){
                 sArm1Rot += 1.0;
             }
         }
@@ -240,8 +250,9 @@ int main()
         app.draw(sArm2, TR2);
         app.draw(sPincer1, TR3);
         app.draw(sPincer2, TR4);
-        app.draw(sArm1, TR1);
         app.draw(sBody, trBody);
+        app.draw(sArm1, TR1);
+
 
         if(ballOneHit==true && ballTwoHit==true && ballThreeHit==true && ballFourHit==true && ballFiveHit==true){ app.draw(gOver); }
 

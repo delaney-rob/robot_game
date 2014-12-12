@@ -5,8 +5,9 @@
 1417191963 source:/home/rob/Yr4SoftDev/Graphics/digger_game/diggerMain.cpp
 	<SFML/Graphics.hpp>
 
-1418174594 source:/home/rob/Yr4SoftDev/Graphics/digger_game/robotMain.cpp
+1418340826 source:/home/rob/Yr4SoftDev/Graphics/digger_game/robotMain.cpp
 	<SFML/Graphics.hpp>
 	<iostream>
 	<sstream>
+	<stdlib.h>
 
